@@ -1,0 +1,284 @@
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <windows.h>
+//prototypes
+int MapaConecta(int n, int map[][5]);
+void welcome();
+int PrintMap(int n, int map[][5]);
+int Pick1(int n, int map[][5]);
+int CheckPlayer1 (int n, int map[][5]);
+int CheckPlayer2 (int n, int map[][5]);
+
+
+int main()
+{
+
+	int map[5][5]; //declarartion of matrix
+	welcome();
+	MapaConecta(5,map);	//Put values of 0 in the matrix 
+	
+		Pick1(5, map);
+		Pick1(5, map);
+		Pick1(5, map);
+		Pick1(5, map);
+		Pick1(5, map);
+		Pick1(5, map);
+		Pick1(5, map);
+		Pick1(5, map);
+		Pick1(5, map);
+		Pick1(5, map);
+		Pick1(5, map);
+		Pick1(5, map);
+		Pick1(5, map);
+		Pick1(5, map);
+		Pick1(5, map);
+		Pick1(5, map);
+		Pick1(5, map);
+}
+
+
+
+void welcome()
+{
+	char option;	//declare varibale to save the users option 
+	printf("Welcome to Conecta4 GUPYS!!!! Make sure you have someone to play with otherwise split your brain in two xD\n Select an opction\na)instructions\n\nb)skip\n\n\n");
+	scanf("%c", &option);//get the char
+	if(option=='a') // when the users wants to see the instructions
+	{
+		printf("The turns will be distributed in 1 and 1, first the player one, then the player 2\nThe player 1 will be appered as '1' in the board and the player 2 as '2'\nThe player that conects 4 first will win, and the other one can eat fuits and vegetables\n\n\n");
+		system("pause");  
+	}
+	else if(option=='b')	//When the user wants to skip the instructions
+	{
+			system("pause");
+			printf("\n\n\n");
+	}
+		else
+	{
+		printf("Input a valid char\n");
+		welcome();	
+	}
+}
+
+int MapaConecta(int n, int map[][5])
+{
+	for (int i=0;i<6;i++)	//loop for  the rows
+	{
+		for (int j=0;j<5;j++)	 //loop for the colums
+		{
+			if (i==0)
+			{
+				map[i][j]=97+j;	//Use the ASCII Code to print the fist five letters of the alphabeth 
+			}
+			else
+			{
+				map[i][j]=0;	//put 0 in all values of the matrix 
+			}
+		}
+	}
+	PrintMap(5,map);
+}
+int PrintMap(int n, int map[][5])
+{
+	for (int i=0;i<6;i++)	//rows loops
+	{
+		for (int j=0;j<5;j++)	//colums loops
+		{
+			if (i==0)
+			{
+				printf(" |%c ",map[i][j]);	//print the value that is in the row where the aphabeth is
+			}
+			else
+			{
+				printf(" |%d ",map[i][j]);	//the values that are in the baard
+			}
+		}
+		printf("|\n");//jump line
+	}
+	return 0;
+}
+
+int Pick1(int n, int map[][5])
+{
+	int choose=1;	//
+	static int a=5,b=5,c=5,d=5,e=5;	//static varibales to the maximum spaces in each column
+	printf("\n\nPlayer 1 is your turn to pick a where do you want your tunrn in:\n(1)a\n(2)b\n(3)c\n(4)d\n(5)e\n");
+	scanf("%d",&choose);	//ask for the sekection
+	printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+	choose-=1;	//substract one from the choose for index complications
+	switch (choose)
+	{
+		case 0:
+			map[a][choose]=1;	//map the selection with the selection and put a "1" instead of  "0"
+			a-=1;				//decress one with the spaces that are there 
+			break;
+		case 1:
+			map[b][choose]=1;	//map the selection with the selection and put a "1" instead of  "0"
+			b-=1;				//decress one with the spaces that are there
+			break;
+		case 2:
+			map[c][choose]=1;	//map the selection with the selection and put a "1" instead of  "0"
+			c-=1;				//decress one with the spaces that are there
+			break;	
+		case 3:
+			map[d][choose]=1;	//map the selection with the selection and put a "1" instead of  "0"
+			d-=1;				//decress one with the spaces that are there
+			break;
+		case 4:
+			map[e][choose]=1;	//map the selection with the selection and put a "1" instead of  "0"
+			e-=1;				//decress one with the spaces that are there
+			break;
+	}
+	system("cls");				//clear screen
+	PrintMap(5,map);			//Print the map with the new choice
+	CheckPlayer1( 5,map); 		//check if the player 1 has already won
+	
+	
+	//	----------------------------------------------------------------------------------------------------------
+	
+	printf("\n\nPlayer 2 is your turn to pick a where do you want your tunrn in:\n(1)a\n(2)b\n(3)c\n(4)d\n(5)e\n\n");
+	scanf("%d",&choose);		//get the option 
+		printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+	choose-=1;					//substract one from the choose for index complications
+	switch (choose)				//switch case for the options 
+	{
+		case 0:
+			map[a][choose]=2;	
+			a-=1;				//map the selection with the selection and put a "1" instead of  "0"
+			break;				//decress one with the spaces that are there
+		case 1:
+			map[b][choose]=2;	//map the selection with the selection and put a "1" instead of  "0"
+			b-=1;				//decress one with the spaces that are there
+			break;
+		case 2:
+			map[c][choose]=2;	//map the selection with the selection and put a "1" instead of  "0"
+			c-=1;				//decress one with the spaces that are there
+			break;
+		case 3:
+			map[d][choose]=2;	//map the selection with the selection and put a "1" instead of  "0"
+			d-=1;				//decress one with the spaces that are there
+			break;
+		case 4:
+			map[e][choose]=2;	//map the selection with the selection and put a "1" instead of  "0"
+			e-=1;				//decress one with the spaces that are there
+			break;	
+	}
+	system("cls"); 				//clear the screen 
+	PrintMap(5,map);			//print the map with the new choice of the user
+	CheckPlayer2(5,map);		//check if the player 2 has won 
+	
+}
+
+int CheckPlayer1 ( int n, int map[][5] )		
+{
+	int z;
+	//Horizonal
+	for (int i=1; i<=n; i++)														//rows
+	{
+		for (int j=0; j<n; j++)														//colums
+		{
+			if (j<=1)																//condition for not to only  check in the only two posible columns
+			{
+				if (map[i][j]==1&&map[i][j+1]==1&&map[i][j+2]==1&&map[i][j+3]==1)	//condition to check if we have 4 "1" in the rows
+				{
+					printf("\nPlayer 1 won\n\n CTRL^C to Exit\n\n");				//Instruction for the user to exit
+					Sleep(300000);													//wait until the user exits
+					printf("Easter egg completed, no pase el cuatri");				//Secret easter Egg 
+					system("pause");												
+				}
+			}
+		}
+	}
+	//vertical
+	for (int i=1; i<=n; i++)														//rows
+	{
+		for (int j=0; j<n; j++)														//columns
+		{
+			if (i<=2)	//condition to chek only in the two possible rows
+			{
+				if (map[i][j]==1&&map[i+1][j]==1&&map[i+2][j]==1&&map[i+3][j]==1)	//condition to check if we have 4 "1" in the rows
+				{
+					printf("\nPlayer 1 won\n\n CTRL^C to Exit\n\n");				//Instruction for the user to exit
+					Sleep(300000);													//wait until the user exits
+					printf("Easter egg completed, no pase el cuatri");				//Secret easter Egg 
+					system("pause");
+				}
+			}
+		}
+	}
+	//diagonal
+	for (int i=1;i<=n;i++)																//rows
+	{
+		for (int j=0;j<n;j++)															//columns
+		{
+			if ((i<3||i>=4)&&(j<=2))													//just the possible places where you can check if there are more than 1 "1's"
+			{
+				if (map[i][j]==1&&map[i+1][j+1]==1&&map[i+2][j+2]==1&&map[i+3][j+3]==1)	//condition to check if we have 4 "1" in diagonal
+				{
+					printf("\nPlayer 1 won\n\n CTRL^C to Exit\n\n");					//Instruction for the user to exit
+					Sleep(300000);														//wait until the user exits
+					printf("Easter egg completed, no pase el cuatri");					//Secret easter Egg
+					system("pause");
+				}
+			}
+		}
+	}
+}
+
+int CheckPlayer2 ( int n, int map[][5])
+{
+	int z;
+	//Horizonal
+	for (int i=1; i<=n; i++)														//rows
+	{
+		for (int j=0; j<n; j++)														//columns
+		{
+			if (j<=1)																//just the possible places where you can check if there are more than 1 "2's"
+			{
+				if (map[i][j]==2&&map[i][j+1]==2&&map[i][j+2]==2&&map[i][j+3]==2)	//condition to check if we have 4 "2" in the columns
+				{
+					printf("\nPlayer 2 won\n\n CTRL^C to Exit\n\n");				//Give orders to the user
+					Sleep(300000);													//wait until the user exits
+					printf("Easter egg completed, no pase el cuatri");				//Secret easter Egg
+					system("pause");
+				}
+			}
+		}
+	}
+	//vertical
+	for (int i=1; i<=n; i++)														//rows
+	{
+		for (int j=0; j<n; j++)														//columns
+		{	
+			if (i<=2)																//just the possible places where you can check if there are more than 1 "2's"
+			{
+				if (map[i][j]==2&&map[i+1][j]==2&&map[i+2][j]==2&&map[i+3][j]==2)	//condition to check if we have 4 "2" in the rows 
+				{
+					printf("\nPlayer 2 won\n\n CTRL^C to Exit\n\n");				//Give orders to the user
+					Sleep(300000);													//wait until the user exits
+					printf("Easter egg completed, no pase el cuatri");				//Secret easter Egg
+					system("pause");												
+				}
+			}
+		}
+	}
+	//diagonal
+	for (int i=1;i<=n;i++)																	//rows											
+	{
+		for (int j=0;j<n;j++)																//columns										
+		{	
+			if ((i<3||i>=4)&&(j<=2))														//just the possible places where you can check if there are more than 1 "2's"					
+			{
+				if (map[i][j]==2&&map[i+1][j+1]==2&&map[i+2][j+2]==2&&map[i+3][j+3]==2)		//condition to check if we have 4 "2" in diagonal
+				{
+					printf("\nPlayer 2 won\n\n CTRL^C to Exit\n\n");						//Give orders to the user	
+					Sleep(300000);															//wait until the user exits
+					printf("Easter egg completed, no pase el cuatri");						//Secret easter Egg	
+					system("pause");
+					
+				}
+			}
+		}
+	}
+}
